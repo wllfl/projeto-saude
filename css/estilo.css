@@ -1,0 +1,238 @@
+body, p, h3{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    background-color: #e4e4e4;
+    text-align: center;
+	font-family: Century Gothic;
+}
+
+#topo{
+	width: 100%;
+    height: 100px;
+	background: url('../images/topo.png') repeat-x;
+	box-shadow: 2px 2px 5px black ;
+}
+
+#titulo{
+	text-align: left;
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.TituloTopo{
+	color: white;
+	line-height: 75px;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#corpo{
+	text-align: center;
+	width: 1000px;
+	height: 550px;
+	margin: 120px auto;
+}
+
+#boxLogin {
+    width: 450px;
+    height: 330px;
+    color: black;
+    margin: 120px auto;
+    box-shadow: 3px 3px 5px black ;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background: url('../images/fundoLogin.png') repeat-x;
+    border: none;  
+    font-size: 13px;
+}
+
+#boxLogin label{
+	display: inline-block;
+	width: 80px;
+	height: 20px;
+	text-align: right;
+	font-size: 18px;
+}
+
+.inputlogin {
+    border: 1px solid #333333;
+    border-radius: 5px;
+    color: white;
+    background-color: #999999;
+    font-size: 18px;
+    height: 40px;
+    margin-left: 10px;
+    width: 300px;
+    padding-left: 10px;
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.5)inset;
+    display: inline-block;
+}
+
+.botao {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #999999;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 5px black ;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.botao:hover{
+	background-color: #92C146;
+	color: black;
+}
+
+.ckremenber {
+    margin-left: 90px;
+	cursor: pointer;
+}
+
+.esquecisenha {
+    font-size: 13px;
+    margin-left: 60px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  text-decoration: underline;
+  color: black;
+}
+
+/**************************************** Alison *******************************************/
+
+.box-mensagem {
+    width: 350px;
+    height: 270px;
+    background-color: #e4e4e4;
+    margin: 120px auto;
+}
+
+#usuario {
+    float: right;
+    width: 430px;
+    height: 45px;
+    margin-top: 20px;
+	text-align: right;
+	display: inline-block;
+}
+
+#usuario img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #333333;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#usuario .labelUsuario {
+    width: 90px;
+	height: 20px;
+	text-align: left;
+	margin-right: 25px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#usuario .lastLabel {
+    width: 30px;
+	height: 20px;
+	text-align: left;
+    margin-right: 0px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#painelInfo {
+    float: left;
+    border: 1px solid #333333;
+    width: 400px;
+    min-height: 500px;
+	height: 500px;
+    margin-right: 18px;
+    box-shadow: 2px 2px 5px black;
+    background-color: #ccc;
+}
+
+html>body #painelInfo {
+height: auto;
+}
+
+#painelSecundario {
+    width: 550px;
+    min-height: 500px;
+    float: right;
+}
+
+#painelSecundario p{
+    text-indent: 60px;
+	text-align: justify;
+}
+
+.divBotoes {
+    width: 173px;
+    height: 173px;
+    border: 1px solid #333333;
+    float: left;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px black;
+    text-align: center;
+    background-color: #ccc;
+}
+
+.divBotoes:hover {
+    background-color: #92C146;
+    font-weight: bold;
+}
+
+.botoesPainel {    
+    margin-bottom: 12px;
+    margin-right: 12px;
+}
+
+.botaoLateral {   
+    margin-bottom: 8px;
+}
+
+.rotuloBotao {
+    font-size: 13px;
+}
+
+.imagemBotao {
+    width: 120px;
+    height: 120px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    border: none;
+}
+
+.fieldset {
+    width: 550px;
+    height: 250px;
+    color: black;
+    margin: 18px auto;
+    box-shadow: 3px 3px 5px black ;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background: url('../images/fundoLogin.png') repeat-x;
+    border: none;  
+    font-size: 13px;
+}
+
+.espacoBotao {
+    margin: 10px;
+}
