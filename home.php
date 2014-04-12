@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Comentário -->
         <meta charset="UTF-8">
         <title>Principal</title>
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
