@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Principal</title>
+        <title>Sobre Saúde Ocupacional</title>
         <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
