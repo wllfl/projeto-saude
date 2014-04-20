@@ -1,6 +1,8 @@
 <?php
-require_once "autoload.php";
-require_once "funcoes.php";
+session_start();
+//require_once "../config.php";
+require_once PATH . "/autoload.php";
+require_once PATH . "/funcoes.php";
 
 class Usuario extends Base{
     
@@ -8,11 +10,11 @@ class Usuario extends Base{
         parent::__construct($conexao);
     }
     
-    public static function validaUsuario($usuario, $senha, $pdo){
+    public static function validaUsuario($email, $senha, $pdo){
         try{
             $sql = "SELECT * FROM TAB_USUARIO WHERE EMAIL = ? AND SENHA = ? AND STATUS = 'A'";
             $stm = $pdo->prepare($sql);
-            $stm->bindValue(1, $usuario);
+            $stm->bindValue(1, $email);
             $stm->bindValue(2, base64_encode($senha));
             $stm->execute();
             $linhas = $stm->rowCount();
@@ -25,9 +27,8 @@ class Usuario extends Base{
                 $_SESSION['EMAIL']       = $dados->EMAIL;
                 $_SESSION['CNPJ']        = $dados->CNPJ;
                 $_SESSION['LIBERADO']    = TRUE;
-                return true;
             else:
-                return false;
+                $_SESSION['LIBERADO']    = FALSE;
             endif;
 
         } catch (PDOException $ex) {
@@ -49,13 +50,13 @@ class Usuario extends Base{
         }
     }
     
-    public function getFilter($filter){
+    public function getFilterId($id){
         try{
-            $sql = "SELECT * FROM TAB_USUARIO WHERE RAZAO LIKE ?";
+            $sql = "SELECT * FROM TAB_USUARIO WHERE ID_USUARIO = ?";
             $stm = $this->pdo->prepare($sql);
-            $stm->bindValue(1, $filter.'%');
+            $stm->bindValue(1, $id);
             $stm->execute();
-            $dados = $stm->fetchAll(PDO::FETCH_OBJ);
+            $dados = $stm->fetch(PDO::FETCH_OBJ);
             
             return $dados;
         } catch (Exception $ex) {
@@ -66,8 +67,8 @@ class Usuario extends Base{
     public function insert($array){
         try{
             $tabela = "TAB_USUARIO";
-            $coluna = array("RAZAO", "EMAIL");
-            $campo = array("EMAIL");
+            $coluna = "RAZAO";
+            $campo = array("RAZAO", "EMAIL");
             
             if (VerificaDuplicidade($tabela, $coluna, $campo) <= 0):
                 $sql = "INSERT INTO TAB_USUARIO(RAZAO, CNPJ, FONE, RESPONSAVEL, EMAIL, SENHA, STATUS)VALUES";

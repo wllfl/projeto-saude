@@ -17,6 +17,6 @@ abstract class Base{
     public abstract function update($array);
     public abstract function delete($id);
     public abstract function getAll();
-    public abstract function getFilter($filter);
+    public abstract function getFilterId($id);
     
 }

@@ -29,7 +29,7 @@
       }
       
       $sql = "SELECT $coluna FROM $tabela " . $where;
-      $pdo = Conectar();
+      $pdo = Conexao::getInstance();
       $stm = $pdo->prepare($sql);
       $stm->execute();
       $cont = $stm->rowCount();

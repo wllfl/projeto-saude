@@ -1,7 +1,7 @@
 <?php
 require_once 'autoload.php';
 
-class Importacao implements Base{
+class Importacao extends Base{
     
     public function __construct($conexao) {
         parent::__construct($conexao);
@@ -20,7 +20,7 @@ class Importacao implements Base{
         }
     }
     
-    public function getFilter($filter){
+    public function getFilterId($id){
         try{
             $sql = "SELECT U.RAZAO, U.USUARIO, I.* FROM TAB_IMPORTACAO INNER JOIN TAB_USUARIO ON I.ID_USUARIO = U.ID_USUARIO WHERE U.RAZAO LIKE ?";
             $stm = $this->pdo->prepare($sql);

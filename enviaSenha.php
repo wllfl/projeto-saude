@@ -2,22 +2,24 @@
     <head>
         <meta charset="UTF-8">
         <title>Envia senha</title>
-        <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
+        <link href="/ProjetoPedro/css/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div id="topo">
             <div id="titulo">
                 <br>
-                <h3>Ferramenta para Avaliação de Saúde Ocupacional</h3>
+                <span class="TituloTopo">Ferramenta para Avaliação de Saúde Ocupacional</span>
             </div>
-        </div>   
+        </div>
+        
         <fieldset class="box-mensagem">
-            <h1>Envia senha</h1>
-            
-            <label>Informe o e-mail que consta em nossos cadastros: </br></label><input type="text" name="email" id="email" class="input" placeholder="Informe o e-mail"></br>      
-            <input type="button" name="botao" class="botao" value="Voltar">
-            <input type="submit" name="botao" class="botao" value="Enviar">
-            
+            <h1>Enviar senha</h1>
+            <label>Informe o e-mail que consta em nossos cadastros: </label></br>
+            <input type="text" name="email" id="email" class="input" placeholder="Informe o e-mail">
+            </br>
+            </br>
+            <input type="image" name="botao" src="/ProjetoPedro/images/btnVoltar.png" class="btnImagem" alt="Voltar" onclick="window.location='/ProjetoPedro/login'">
+            <input type="image" name="botao" src="/ProjetoPedro/images/btnEnviar.png" class="btnImagem" alt="Enviar">
         </fieldset>
     </body>
 </html>

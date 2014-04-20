@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Century Gothic;
+  src: url('Century_Gothic.ttf');
+}
+
 body, p, h3{
 	margin: 0;
 	padding: 0;
@@ -51,6 +56,7 @@ body {
     font-size: 13px;
 }
 
+
 #boxLogin label{
 	display: inline-block;
 	width: 80px;
@@ -91,6 +97,14 @@ body {
 	color: black;
 }
 
+.btnImagem{
+    margin: 10px; 
+}
+
+.btnImagem:hover{
+    box-shadow: 2px 2px 5px black ;
+}
+
 .ckremenber {
     margin-left: 90px;
 	cursor: pointer;
@@ -114,10 +128,14 @@ a:hover{
 /**************************************** Alison *******************************************/
 
 .box-mensagem {
-    width: 350px;
+    width: 400px;
     height: 270px;
-    background-color: #e4e4e4;
+    background-color: white;
     margin: 120px auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+    border: none;
+    text-align: center
 }
 
 #usuario {
@@ -179,7 +197,14 @@ height: auto;
 
 #painelSecundario p{
     text-indent: 60px;
-	text-align: justify;
+    text-align: justify;
+}
+
+#informacao{
+    background-color: white;
+    padding: 20px;
+    border: 2px dotted #333333;
+    box-shadow: 2px 2px 5px black;
 }
 
 .divBotoes {
@@ -221,7 +246,7 @@ height: auto;
 
 .fieldset {
     width: 550px;
-    height: 250px;
+    height: 300px;
     color: black;
     margin: 18px auto;
     box-shadow: 3px 3px 5px black ;
@@ -236,3 +261,158 @@ height: auto;
 .espacoBotao {
     margin: 10px;
 }
+
+#boxImportacao{
+    width: 450px;
+    height: 200px;
+    margin: 7px auto;
+    padding: 10px;
+    background: url('../images/fundoLogin.png') repeat-x;
+    border-radius: 10px;
+}
+
+#boxImportacao legend{
+    font-size: 20px;
+    padding: 10px;
+    background-color: #92C146;
+    border: 1px dotted #333333;
+    border-radius: 10px;
+}
+
+.input{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+    height: 35px;
+    width: 300px;
+    padding-left: 10px;
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.5)inset;
+}
+
+#consultaUsuario {
+    background-color: white;
+    border-radius: 10px;
+    min-height: 100px;
+}
+
+.tabela {
+    border: 1px solid #333333;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tabela tr th{
+    border: 1px solid #333333;
+    background-color: #e4e4e4;
+}
+
+.tabela tr td {
+    border: 1px solid #333333;
+}
+
+.tabela tr:hover {
+    background-color: #e4e4e4;
+    cursor: pointer;
+}
+
+.btnTabelaEI {
+    margin: 7px;
+    cursor: pointer;
+}
+
+#boxCadastro {
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: left;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 3px 3px 5px black ;
+}
+
+#boxCadastro fieldset {
+    min-height: 500px;
+    margin: 0 auto;
+    text-align: left;
+    width: 620px;
+    box-shadow: 3px 3px 5px black ;
+    border-radius: 10px;
+    
+}
+
+#boxCadastro fieldset legend{
+    font-size: 20px;
+    padding: 10px;
+    border: 1px dotted #333333;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #e4e4e4;
+}
+
+#boxCadastro label {
+    display: inline-block;
+    width: 130px;
+    text-align: left;
+    line-height: 40px;
+}
+
+#boxCadastro input {
+    display: inline-block;
+    margin-left: 10px;
+    color: #333333;
+  
+}
+
+.inputCadastro {
+    border: 1px solid #333333;
+    border-radius: 5px;
+    color: white;
+    background-color: #e4e4e4;
+    font-size: 18px;
+    height: 25px;
+    margin-left: 10px;
+    padding-left: 10px;
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.5)inset;
+    display: inline-block; 
+}
+
+.cmbCadastro{
+    border: 1px solid #333333;
+    border-radius: 5px;
+    color: #333333;
+    background-color: #e4e4e4;
+    font-size: 18px;
+    height: 25px;
+    margin-left: 10px;
+    padding-left: 10px;
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.5)inset;
+    display: inline-block; 
+    cursor: pointer;
+}
+
+.msg-aviso {
+    color: red;
+    font-size: 11px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#controlaBotao {
+    float: right;
+}
+
+#msgLogin{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+
+hr{
+    border: 1px dotted #000;
+}
+
+.ms{width: 150px; padding:10px 10px 10px 30px; border:1px solid #999; margin-bottom:10px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; box-shadow:#333 0 0 2px; -webkit-box-shadow:#333 0 0 2px; -moz-box-shadow:#333 0 0 2px; font:bold 12px "Trebuchet MS", Arial, Helvetica, sans-serif; font-variant:small-caps; margin-top:10px;}
+.no{background:#FFCACA url(../images/ico/no.png) 7px no-repeat; border-color:#900; color:#900;}
+.ok{background:#A6FFBC url(../images/ico/ok.png) 7px no-repeat; border-color:#090; color:#090;}
+.al{background:#FFFFBF url(../images/ico/alert.png) 7px no-repeat; border-color:#F60; color:#F60;}
+.in{background:#B3E7FF url(../images/ico/info.png) 7px no-repeat; border-color:#069; color:#069;}
+.lo{background:#FFF; border-color:#069; color:#069; margin-top:-10px;}
