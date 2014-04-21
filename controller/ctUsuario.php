@@ -44,12 +44,12 @@ if ($acao == 'incluir'):
         $retorno = $objUsuario->insert($array);
         
         if ($retorno):
-            echo "<script>alert('Usuario inserido com sucesso!')</script>";
+            echo "<script>alert('Usuário inserido com sucesso!')</script>";
         else:    
-            echo "<script>alert('Erro ao insetir usuario!')</script>";
+            echo "<script>alert('Erro ao insetir usuário!')</script>";
         endif;
     else:
-        echo "<script>E necessario preencher os campos obrigatorios(*).</script>";
+        echo "<script>E necessário preencher os campos obrigatórios(*).</script>";
     endif;
     
     echo "<script>window.location='/ProjetoPedro/principal'</script>";
@@ -61,12 +61,12 @@ if ($acao == 'editar'):
         $retorno = $objUsuario->update($array);
         
         if ($retorno):
-            echo "<script>alert('Usuario editado com sucesso!')</script>";
+            echo "<script>alert('Usuário editado com sucesso!')</script>";
         else:    
-            echo "<script>alert('Erro ao editar usuario!')</script>";
+            echo "<script>alert('Erro ao editar usuário!')</script>";
         endif;
     else:
-        echo "<script>E necessario preencher os campos obrigatorios(*).</script>";
+        echo "<script>E necessário preencher os campos obrigatários(*).</script>";
     endif;
     
     echo "<script>window.location='/ProjetoPedro/pesquisar-usuario'</script>";
@@ -77,9 +77,9 @@ if ($acao == 'excluir'):
        $retorno = $objUsuario->delete($id);
     
        if ($retorno):
-            echo "<script>alert('Usuario excluido com sucesso!')</script>";
+            echo "<script>alert('Usuário excluído com sucesso!')</script>";
        else:    
-            echo "<script>alert('Erro ao excluir usuario!')</script>";
+            echo "<script>alert('Erro ao excluir usuário!')</script>";
        endif;
        
        echo "<script>window.location='/ProjetoPedro/pesquisar-usuario'</script>";

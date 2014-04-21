@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Envia senha</title>
+        <title>Enviar senha</title>
         <link href="/ProjetoPedro/css/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>

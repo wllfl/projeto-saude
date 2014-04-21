@@ -21,7 +21,7 @@ $dados   = $usuario->getAll();
         
         <div id="corpo">
             <fieldset id="consultaUsuario">
-                <h1>Consulta de Usuario</h1>
+                <h1>Consulta de Usuário</h1>
                 <table class="tabela" align="center">
                     <thead>
                     <tr>
@@ -55,8 +55,8 @@ $dados   = $usuario->getAll();
                 </table>
                 <br>
                 <hr>
-                <input type="image" class="btnImagem"src="images/btnIncluir.png" alt="Incluir" onclick="window.location='cadastrar-usuario'" title="Incluir Usuario"> 
-                <input type="image" class="btnImagem"src="images/btnVoltar.png" alt="Voltar" onclick="window.location='principal'" title="Pagina principal">
+                <input type="image" class="btnImagem"src="images/btnIncluir.png" alt="Incluir" onclick="window.location='cadastrar-usuário'" title="Incluir Usuário"> 
+                <input type="image" class="btnImagem"src="images/btnVoltar.png" alt="Voltar" onclick="window.location='principal'" title="Página principal">
             </fieldset>
         </div>
         <script type="text/javascript">
@@ -70,3 +70,4 @@ $dados   = $usuario->getAll();
         </script>    
     </body>
 </html>
+s
