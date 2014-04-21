@@ -10,13 +10,19 @@ require_once './inc_verifica_acesso.php';
         <link href="/ProjetoPedro/css/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <form action="" method="">
-            <fieldset id="boxImportacao"> 
-                <legend align="center">Importar Planilha</legend>
+        <fieldset id="boxImportacao"> 
+            <legend align="center">Importar Planilha</legend>
+            <form name="frmImportacao" id="frmImportacao" method="POST" action="/ProjetoPedro/controller/ctImportacao.php" enctype="multipart/form-data"/>
                 <input type="file" name="file" id="file"></br></br>
-                <input type="image" name="botaoVoltar" src="/ProjetoPedro/images/btnVoltar.png" class="btnImagem" onclick="window.close();"/>
-                <input type="image" name="botaoImportar" src="/ProjetoPedro/images/btnImportar.png" class="btnImagem">                   
-            </fieldset>
-        </form>
+            </form>
+            <input type="image" name="botaoVoltar" src="/ProjetoPedro/images/btnVoltar.png" class="btnImagem" onclick="window.close();"/>
+            <input type="image" name="botaoImportar" src="/ProjetoPedro/images/btnImportar.png" class="btnImagem" onclick="Submit()"> 
+        </fieldset>
+        <script type="text/javascript">
+            function Submit(){
+                var form = document.getElementById('frmImportacao');
+                form.submit();
+            }
+        </script>
     </body>
 </html>

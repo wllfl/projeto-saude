@@ -63,9 +63,12 @@ endif;
                     <?php echo $msg = (isset($_SESSION['MSG_LOGIN'])) ? $_SESSION['MSG_LOGIN'] : '' ; ?>
                  </div>
                  <form id="frmLogin" action="/ProjetoPedro/index.php?acao=validar" method="POST" onsubmit="return Validar();">
-                     <label>E-mail:</label><input type="text" name="txtEmail" id="txtEmail" class="inputlogin" placeholder="Informe o E-mail" value="<?php echo (isset($email)) ? $email : ''; ?>"></br></br>        
-                     <label>Senha:</label><input type="password" name="txtSenha" id="txtSenha" class="inputlogin" placeholder="Informe a Senha" value="<?php echo (isset($senha)) ? $senha : ''; ?>"></br></br>
-                     <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" <?php echo (!empty($checked)) ? $checked : ''; ?>>Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>         
+                     <label>E-mail:</label>
+                     <input type="text" name="txtEmail" id="txtEmail" class="inputlogin" placeholder="Informe o E-mail" value="<?php echo (isset($email)) ? $email : ''; ?>"></br></br>        
+                     <label>Senha:</label>
+                     <input type="password" name="txtSenha" id="txtSenha" class="inputlogin" placeholder="Informe a Senha" value="<?php echo (isset($senha)) ? $senha : ''; ?>"></br></br>
+                     <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" <?php echo (!empty($checked)) ? $checked : ''; ?>>
+                     Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>         
                      <input type="submit" name="btnlogin" class="botao" id="btnlogin" value="Entrar"/>
                 </form>
             </fieldset>

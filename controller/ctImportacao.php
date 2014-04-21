@@ -1,8 +1,15 @@
 <?php
+session_start();
+require_once "../config.php";
+require_once PATH . "/autoload.php";
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$upload = new Upload($_FILES['file'], "../planilhas/");
+if ($upload->executaUpload()):
+    echo "<script>alert('Upload realizado com sucesso!')</script>";
+else:
+    echo "<script>alert('Erro no Upload!')</script>";
+endif;
+echo "<script>window.close()</script>";
+
+
 
