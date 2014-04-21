@@ -30,7 +30,7 @@ if ($acao == 'validar'):
             endif;
         endif;
     else:
-        $_SESSION['MSG_LOGIN'] = "<span class='ms al'>E necessário informar Usuário e Senha!</span>";
+        $_SESSION['MSG_LOGIN'] = "<span class='ms al'>É necessário informar Usuário e Senha!</span>";
     endif;
     
     if (isset($_SESSION['MSG_LOGIN']) && !empty($_SESSION['MSG_LOGIN'])):
@@ -49,7 +49,7 @@ if ($acao == 'incluir'):
             echo "<script>alert('Erro ao insetir usuário!')</script>";
         endif;
     else:
-        echo "<script>E necessário preencher os campos obrigatórios(*).</script>";
+        echo "<script>É necessário preencher os campos obrigatórios(*).</script>";
     endif;
     
     echo "<script>window.location='/ProjetoPedro/principal'</script>";
@@ -66,7 +66,7 @@ if ($acao == 'editar'):
             echo "<script>alert('Erro ao editar usuário!')</script>";
         endif;
     else:
-        echo "<script>E necessário preencher os campos obrigatários(*).</script>";
+        echo "<script>É necessário preencher os campos obrigatários(*).</script>";
     endif;
     
     echo "<script>window.location='/ProjetoPedro/pesquisar-usuario'</script>";

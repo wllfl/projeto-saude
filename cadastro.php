@@ -67,7 +67,7 @@ endif;
                 var form        = document.getElementById('frmCadastroUsuario');
                 
                 if (razao == '' || responsavel == '' || email == '' || senha == '' || confirmacao == '' || fone == '' || status == ''){
-                    alert('E necessário preencher os campos obrigatórios (*).');
+                    alert('É necessário preencher os campos obrigatórios (*).');
                 }else{
                     if (senha.length < 6){
                         alert('Senha possui menos que 6 caracters!');

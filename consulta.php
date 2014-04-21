@@ -55,7 +55,7 @@ $dados   = $usuario->getAll();
                 </table>
                 <br>
                 <hr>
-                <input type="image" class="btnImagem"src="images/btnIncluir.png" alt="Incluir" onclick="window.location='cadastrar-usuário'" title="Incluir Usuário"> 
+                <input type="image" class="btnImagem"src="images/btnIncluir.png" alt="Incluir" onclick="window.location='cadastrar-usuario'" title="Incluir Usuário"> 
                 <input type="image" class="btnImagem"src="images/btnVoltar.png" alt="Voltar" onclick="window.location='principal'" title="Página principal">
             </fieldset>
         </div>
