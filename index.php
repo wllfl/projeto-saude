@@ -2,8 +2,46 @@
 session_start();
 session_destroy();
 require_once 'config.php';
+require_once PATH . "/autoload.php";
 
-var_dump($_COOKIE['CookieAutoLogin']);
+$email   = $_COOKIE['CookieEmail'];
+$senha   = base64_decode($_COOKIE['CookieSenha']);
+$checked = (isset($_COOKIE['CookieAutoLogin']) && $_COOKIE['CookieAutoLogin'] == 'autologin') ? 'checked' : '';
+$acao     = (isset($_REQUEST['acao'])) ? $_REQUEST['acao'] : '';
+
+if ($acao == 'validar'):
+    $email    = (isset($_REQUEST['txtEmail'])) ? $_REQUEST['txtEmail'] : '';
+    $senha    = (isset($_REQUEST['txtSenha'])) ? $_REQUEST['txtSenha'] : '';
+    $remenber = (isset($_POST['ckremenber']))  ? $_POST['ckremenber'] : '';
+    
+    if (!empty($email) && !empty($senha)):
+        Usuario::validaUsuario($email, $senha, Conexao::getInstance());
+    
+        if(isset($_SESSION['LIBERADO'])):
+            if ($_SESSION['LIBERADO'] == TRUE): 
+                if ($remenber == "s"):
+                   $expirytime = time() + 365*24*60*60; 
+                   setCookie('CookieAutoLogin', 'autologin', $expirytime);
+                   setCookie('CookieEmail', $email, $expirytime);
+                   setCookie('CookieSenha', base64_encode($senha), $expirytime);
+                else:
+                   setCookie('CookieAutoLogin');
+                   setCookie('CookieEmail');
+                   setCookie('CookieSenha');
+                endif;
+                echo "<script>window.location = '/ProjetoPedro/principal'</script>";
+            else:
+                $_SESSION['MSG_LOGIN'] = "<span class='ms no'>Usuário ou Senha incorretos!</span>";
+            endif;
+        endif;
+    else:
+        $_SESSION['MSG_LOGIN'] = "<span class='ms al'>É necessário informar Usuário e Senha!</span>";
+    endif;
+    
+    if (isset($_SESSION['MSG_LOGIN']) && !empty($_SESSION['MSG_LOGIN'])):
+        echo "<script>window.location = '/ProjetoPedro/login'</script>";
+    endif;
+endif;
 
 ?>
 <!DOCTYPE html>
@@ -24,10 +62,10 @@ var_dump($_COOKIE['CookieAutoLogin']);
                  <div id="msgLogin">
                     <?php echo $msg = (isset($_SESSION['MSG_LOGIN'])) ? $_SESSION['MSG_LOGIN'] : '' ; ?>
                  </div>
-                 <form id="frmLogin" action="/ProjetoPedro/controller/ctUsuario.php?acao=validar" method="POST" onsubmit="return Validar();">
+                 <form id="frmLogin" action="/ProjetoPedro/index.php?acao=validar" method="POST" onsubmit="return Validar();">
                      <label>E-mail:</label><input type="text" name="txtEmail" id="txtEmail" class="inputlogin" placeholder="Informe o E-mail" value="<?php echo (isset($email)) ? $email : ''; ?>"></br></br>        
                      <label>Senha:</label><input type="password" name="txtSenha" id="txtSenha" class="inputlogin" placeholder="Informe a Senha" value="<?php echo (isset($senha)) ? $senha : ''; ?>"></br></br>
-                     <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" >Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>         
+                     <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" <?php echo (!empty($checked)) ? $checked : ''; ?>>Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>         
                      <input type="submit" name="btnlogin" class="botao" id="btnlogin" value="Entrar"/>
                 </form>
             </fieldset>
