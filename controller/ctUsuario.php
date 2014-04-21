@@ -16,6 +16,7 @@ $email       = (isset($_REQUEST['txtEmail'])) ? $_REQUEST['txtEmail'] : '';
 $senha       = (isset($_REQUEST['txtSenha'])) ? $_REQUEST['txtSenha'] : '';
 $confSenha   = (isset($_POST['txtConfirmaSenha'])) ? $_POST['txtConfirmaSenha'] : '';
 $status      = (isset($_POST['cmbStatus'])) ? $_POST['cmbStatus'] : '';
+$remenber    = (isset($_POST['ckremenber'])) ? $_POST['ckremenber'] : '';
 
 if ($acao == 'validar'):
 
@@ -23,7 +24,13 @@ if ($acao == 'validar'):
         Usuario::validaUsuario($email, $senha, $conexao);
     
         if(isset($_SESSION['LIBERADO'])):
-            if ($_SESSION['LIBERADO'] == TRUE):
+            if ($_SESSION['LIBERADO'] == TRUE): 
+                $expirytime = time() + 365*24*60*60; 
+                if ($remenber == "s"):
+                   setCookie('CookieAutoLogin', 'autologin', $expirytime);
+                   setCookie('CookieEmail', $email, $expirytime);
+                   setCookie('CookieSenha', base64_encode($senha), $expirytime);
+                endif;
                 echo "<script>window.location = '/ProjetoPedro/principal'</script>";
             else:
                 $_SESSION['MSG_LOGIN'] = "<span class='ms no'>Usuário ou Senha incorretos!</span>";

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once './inc_verifica_acesso.php';
 require_once 'autoload.php';
 
 $id = (isset($_REQUEST['id'])) ? $_REQUEST['id']:'';
@@ -48,7 +49,7 @@ endif;
                     <hr>
                     <div id="controlaBotao">
                         <input type="image" class="btnImagem"src="/ProjetoPedro/images/btnGravar.png" alt="Gravar" title="Gravar Usuário" onclick="ValidaDados();"> 
-                        <input type="image" class="btnImagem"src="/ProjetoPedro/images/btnLimpar.png" alt="Limpar" title="Limpar Campos"> 
+                        <input type="image" class="btnImagem"src="/ProjetoPedro/images/btnLimpar.png" alt="Limpar" title="Limpar Campos" onclick="Limpar();"> 
                         <input type="image" class="btnImagem"src="/ProjetoPedro/images/btnVoltar.png" alt="Voltar" title="Página principal" onclick="window.location='/ProjetoPedro/principal'">  
                     </div> 
                 </fieldset>
@@ -64,9 +65,38 @@ endif;
                 var confirmacao = document.getElementById('txtConfirmaSenha').value;
                 var fone        = document.getElementById('txtFone').value;
                 var status      = document.getElementById('cmbStatus').value;
+                var cnpj        = document.getElementById('txtCnpj').value;
                 var form        = document.getElementById('frmCadastroUsuario');
+                var input       = document.getElementsByTagName('input');
+                var select     = document.getElementsByTagName('select');
                 
-                if (razao == '' || responsavel == '' || email == '' || senha == '' || confirmacao == '' || fone == '' || status == ''){
+                if (razao == '' || responsavel == '' || email == '' || senha == '' || confirmacao == '' || fone == '' || status == '' || cnpj == ''){
+                                    
+                    for(var i=0; i<input.length; i++){
+                       if (input[i].value == ''){
+                           input[i].style.backgroundColor = "#FFCACA";
+                           input[i].style.borderColor = "#900";
+                       }else{
+                           if ((input[i].id == 'txtSenha' || input[i].id == 'txtConfirmaSenha') && input[i].value.length < 6){
+                               input[i].style.backgroundColor = "#FFCACA";
+                               input[i].style.borderColor = "#900";
+                           }else{
+                               input[i].style.backgroundColor = "#e4e4e4";
+                               input[i].style.borderColor = "#333333";
+                           }
+                       }
+                    }
+                    
+                    for(var i=0; i<select.length; i++){
+                       if (select[i].value == ''){
+                           select[i].style.backgroundColor = "#FFCACA";
+                           select[i].style.borderColor = "#900";
+                       }else{
+                           select[i].style.backgroundColor = "#e4e4e4";
+                           select[i].style.borderColor = "#333333";
+                       }
+                    }
+                    
                     alert('É necessário preencher os campos obrigatórios (*).');
                 }else{
                     if (senha.length < 6){
@@ -99,6 +129,17 @@ endif;
                     }
                 }
                 
+            }
+            
+            function Limpar(){
+                var input  = document.getElementsByTagName('input');
+                var select = document.getElementsByTagName('select');
+                
+                for(var i=0; i<input.length; i++)
+		   input[i].value = '';
+                   
+                for(var i=0; i<select.length; i++)
+		   select[i].selectedIndex = 0;
             }
         </script>
     </body>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once './inc_verifica_acesso.php';
 ?>
 <!DOCTYPE html>
 <html>
