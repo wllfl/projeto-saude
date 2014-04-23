@@ -6,10 +6,7 @@
     </head>
     <body>
          <div id="topo">
-            <div id="titulo">
-                <br>
-                <span class="TituloTopo">Ferramenta para Avaliação de Saúde Ocupacional</span>
-            </div>
+            <?php include "inc/inc_topo_externo.php"; ?>
         </div>
         <fieldset class="box-mensagem">
             <h1>Usuário não liberado!</h1></br> 

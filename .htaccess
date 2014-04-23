@@ -3,6 +3,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^principal/?$ home.php [NC,L]
+	RewriteRule ^upload-planilha/?$ importacao.php [NC,L]
     RewriteRule ^acesso-negado/?$ liberacao.php [NC,L]
     RewriteRule ^saude-ocupacional/?$ sobre.php [NC,L]
     RewriteRule ^pesquisar-usuario/?$ consulta.php [NC,L]

@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 abstract class Base{
     
     protected $pdo = null;

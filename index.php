@@ -1,13 +1,13 @@
 <?php
 session_start();
-session_destroy();
 require_once 'config.php';
 require_once PATH . "/autoload.php";
 
-$email   = $_COOKIE['CookieEmail'];
-$senha   = base64_decode($_COOKIE['CookieSenha']);
+$email   = (isset($_COOKIE['CookieEmail'])) ? $_COOKIE['CookieEmail'] : '' ;
+$senha   = (isset($_COOKIE['CookieSenha'])) ? base64_decode($_COOKIE['CookieSenha']) :'';
 $checked = (isset($_COOKIE['CookieAutoLogin']) && $_COOKIE['CookieAutoLogin'] == 'autologin') ? 'checked' : '';
-$acao     = (isset($_REQUEST['acao'])) ? $_REQUEST['acao'] : '';
+$acao    = (isset($_REQUEST['acao'])) ? $_REQUEST['acao'] : '';
+unset($_SESSION['MSG_LOGIN']);
 
 if ($acao == 'validar'):
     $email    = (isset($_REQUEST['txtEmail'])) ? $_REQUEST['txtEmail'] : '';
@@ -19,17 +19,21 @@ if ($acao == 'validar'):
     
         if(isset($_SESSION['LIBERADO'])):
             if ($_SESSION['LIBERADO'] == TRUE): 
-                if ($remenber == "s"):
-                   $expirytime = time() + 365*24*60*60; 
-                   setCookie('CookieAutoLogin', 'autologin', $expirytime);
-                   setCookie('CookieEmail', $email, $expirytime);
-                   setCookie('CookieSenha', base64_encode($senha), $expirytime);
-                else:
-                   setCookie('CookieAutoLogin');
-                   setCookie('CookieEmail');
-                   setCookie('CookieSenha');
-                endif;
-                echo "<script>window.location = '/ProjetoPedro/principal'</script>";
+			    if ($_SESSION['ATIVO'] == TRUE): 
+					if ($remenber == "s"):
+					   $expirytime = time() + 365*24*60*60; 
+					   setCookie('CookieAutoLogin', 'autologin', $expirytime);
+					   setCookie('CookieEmail', $email, $expirytime);
+					   setCookie('CookieSenha', base64_encode($senha), $expirytime);
+					else:
+					   setCookie('CookieAutoLogin');
+					   setCookie('CookieEmail');
+					   setCookie('CookieSenha');
+					endif;
+					echo "<script>window.location = '/ProjetoPedro/principal'</script>";
+				else:
+					$_SESSION['MSG_LOGIN'] = "<span class='ms al'>Usuário não está ativo!</span>";
+				endif;
             else:
                 $_SESSION['MSG_LOGIN'] = "<span class='ms no'>Usuário ou Senha incorretos!</span>";
             endif;
@@ -37,10 +41,8 @@ if ($acao == 'validar'):
     else:
         $_SESSION['MSG_LOGIN'] = "<span class='ms al'>É necessário informar Usuário e Senha!</span>";
     endif;
-    
-    if (isset($_SESSION['MSG_LOGIN']) && !empty($_SESSION['MSG_LOGIN'])):
-        echo "<script>window.location = '/ProjetoPedro/login'</script>";
-    endif;
+else:
+   session_destroy();
 endif;
 
 ?>
@@ -53,7 +55,7 @@ endif;
     </head>
     <body>
        <div id="topo">
-            <?php include "./inc_topo_externo.php"; ?>
+            <?php include "inc/inc_topo_interno.php"; ?>
         </div>
         
         <div id="corpo">
@@ -62,13 +64,14 @@ endif;
                  <div id="msgLogin">
                     <?php echo $msg = (isset($_SESSION['MSG_LOGIN'])) ? $_SESSION['MSG_LOGIN'] : '' ; ?>
                  </div>
-                 <form id="frmLogin" action="/ProjetoPedro/index.php?acao=validar" method="POST" onsubmit="return Validar();">
+                 <form id="frmLogin" action="/ProjetoPedro/index.php" method="POST" onsubmit="return Validar();">
                      <label>E-mail:</label>
                      <input type="text" name="txtEmail" id="txtEmail" class="inputlogin" placeholder="Informe o E-mail" value="<?php echo (isset($email)) ? $email : ''; ?>"></br></br>        
                      <label>Senha:</label>
                      <input type="password" name="txtSenha" id="txtSenha" class="inputlogin" placeholder="Informe a Senha" value="<?php echo (isset($senha)) ? $senha : ''; ?>"></br></br>
                      <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" <?php echo (!empty($checked)) ? $checked : ''; ?>>
-                     Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>         
+                     Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>  
+					 <input type="hidden" name="acao" value="validar"/>					 
                      <input type="submit" name="btnlogin" class="botao" id="btnlogin" value="Entrar"/>
                 </form>
             </fieldset>

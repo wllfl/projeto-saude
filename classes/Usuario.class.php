@@ -1,5 +1,4 @@
 <?php
-session_start();
 //require_once "../config.php";
 require_once PATH . "/autoload.php";
 require_once PATH . "/funcoes.php";
@@ -12,7 +11,7 @@ class Usuario extends Base{
     
     public static function validaUsuario($email, $senha, $pdo){
         try{
-            $sql = "SELECT * FROM TAB_USUARIO WHERE EMAIL = ? AND SENHA = ? AND STATUS = 'A'";
+            $sql = "SELECT * FROM TAB_USUARIO WHERE EMAIL = ? AND SENHA = ?";
             $stm = $pdo->prepare($sql);
             $stm->bindValue(1, $email);
             $stm->bindValue(2, base64_encode($senha));
@@ -26,6 +25,11 @@ class Usuario extends Base{
                 $_SESSION['RESPONSAVEL'] = $dados->RESPONSAVEL;
                 $_SESSION['EMAIL']       = $dados->EMAIL;
                 $_SESSION['CNPJ']        = $dados->CNPJ;
+				if($dados->STATUS == 'A'):
+					$_SESSION['ATIVO'] = TRUE;
+				else:
+					$_SESSION['ATIVO'] = FALSE;
+				endif;				
                 $_SESSION['LIBERADO']    = TRUE;
             else:
                 $_SESSION['LIBERADO']    = FALSE;

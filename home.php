@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './inc_verifica_acesso.php';
+require_once 'inc/inc_verifica_acesso.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@ require_once './inc_verifica_acesso.php';
     </head>
     <body>
         <div id="topo">
-            <?php include './inc_topo_interno.php';?>
+            <?php include 'inc/inc_topo_interno.php';?>
         </div>
         
         <div id="corpo">
@@ -48,12 +48,12 @@ require_once './inc_verifica_acesso.php';
                     <span class="rotuloBotao">Gerar Gráfico</span>
                 </div>
 				
-		<a href="#" onclick="window.open('importacao.php', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=250');">
+				<a href="#" onclick="window.open('upload-planilha', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=250');">
                     <div id="importarPlanilha" class="botoesPainel divBotoes">
                         <img class="imagemBotao" src="/ProjetoPedro/images/import.png"></br>
                         <span class="rotuloBotao">Importar Planilha</span>
                     </div>
-		</a>
+				</a>
 				
                 <a href="/ProjetoPedro/saude-ocupacional">
                     <div id="sobre" class="botaoLateral divBotoes">

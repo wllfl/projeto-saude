@@ -4,7 +4,7 @@
  * Constantes de parâmetros para configuração da conexão
  */
 define('HOST', 'localhost');
-define('DBNAME', 'DB_SAUDE');
+define('DBNAME', 'db_saude');
 define('CHARSET', 'utf8');
 define('USER', 'root');
 define('PASSWORD', '011224');

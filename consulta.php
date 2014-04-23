@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './inc_verifica_acesso.php';
+require_once 'inc/inc_verifica_acesso.php';
 require_once 'autoload.php';
 
 $conexao = Conexao::getInstance();
@@ -17,7 +17,7 @@ $dados   = $usuario->getAll();
     </head>
     <body>
         <div id="topo">
-            <?php include './inc_topo_interno.php';?>
+            <?php include 'inc/inc_topo_interno.php';?>
         </div>
         
         <div id="corpo">
