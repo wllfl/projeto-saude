@@ -55,7 +55,7 @@ endif;
     </head>
     <body>
        <div id="topo">
-            <?php include "inc/inc_topo_externo.php"; ?>
+            <?php include "inc/inc_topo_interno.php"; ?>
         </div>
         
         <div id="corpo">

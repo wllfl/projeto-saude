@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset=utf-8');
 session_start();
 require_once "../config.php";
 require_once PATH . "/autoload.php";
@@ -27,9 +28,9 @@ if ($acao == 'validar'):
             if ($_SESSION['LIBERADO'] == TRUE): 
                 $expirytime = time() + 365*24*60*60; 
                 if ($remenber == "s"):
-                   setCookie('CookieAutoLogin', 'autologin', $expirytime, '/');
-                   setCookie('CookieEmail', $email, $expirytime, '/');
-                   setCookie('CookieSenha', base64_encode($senha), $expirytime, '/');
+                   setCookie('CookieAutoLogin', 'autologin', $expirytime);
+                   setCookie('CookieEmail', $email, $expirytime);
+                   setCookie('CookieSenha', base64_encode($senha), $expirytime);
                 endif;
                 echo "<script>window.location = '/ProjetoPedro/principal'</script>";
             else:

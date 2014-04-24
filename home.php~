@@ -36,7 +36,7 @@ require_once 'inc/inc_verifica_acesso.php';
                     </div>
                 </a>
 
-                <a href="/ProjetoPedro/arquivo/PlanilhaDados.xlsx">
+                <a href="/ProjetoPedro/arquivo/Planilha_Dados.xlsx">
                     <div id="downloadPlanilha" class="botaoLateral divBotoes">
                             <img class="imagemBotao" src="/ProjetoPedro/images/download.jpg"></br>
                             <span class="rotuloBotao">Download Planilha</span>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './inc_verifica_acesso.php';
+require_once 'inc/inc_verifica_acesso.php';
 require_once 'autoload.php';
 
 $id = (isset($_REQUEST['id'])) ? $_REQUEST['id']:'';
@@ -20,7 +20,7 @@ endif;
     </head>
     <body>
         <div id="topo">
-            <?php include './inc_topo_interno.php';?>
+            <?php include 'inc/inc_topo_interno.php';?>
         </div>
         
         <div id="corpo">                                
@@ -28,13 +28,20 @@ endif;
                 <fieldset> 
                     <legend align="center">Cadastro de Usuário</legend>
                     <form action="/ProjetoPedro/controller/ctUsuario.php" method="POST" id="frmCadastroUsuario"/>
-                    <label>Empresa:</label><input class="inputCadastro" type="text" value="<?php echo (isset($dados)) ? $dados->RAZAO : '';?>"  onblur="VerificaSize(this.id);" placeholder="Informe a Razão Social" name="txtRazao" id="txtRazao" size="40"><span class="msg-aviso">*</span></br>
-                        <label>Responsável:</label><input class="inputCadastro"type="text" value="<?php echo (isset($dados)) ? $dados->RESPONSAVEL : '';?>"  onblur="VerificaSize(this.id);" placeholder="Informe o responsável" name="txtResponsavel" id="txtResponsavel" size="20"><span class="msg-aviso">*</span></br>
-                        <label>Email:</label><input class="inputCadastro"type="email" value="<?php echo (isset($dados)) ? $dados->EMAIL : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe o e-mail" name="txtEmail" id="txtEmail" size="20"><span class="msg-aviso">*</span></br>
-                        <label>Senha:</label><input class="inputCadastro"type="password" value="<?php echo (isset($dados)) ? base64_decode($dados->SENHA) : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe a senha" name="txtSenha" id="txtSenha" size="20"><span class="msg-aviso">** Mínimo de 6 caracteres</span></br>
-                        <label>Confirma Senha:</label><input class="inputCadastro"type="password" value="<?php echo (isset($dados)) ? base64_decode($dados->SENHA) : '';?>" onblur="VerificaSize(this.id);" placeholder="Confirme a senha" name="txtConfirmaSenha" id="txtConfirmaSenha" size="20"><span class="msg-aviso">*</span></br>
-                        <label>Fone:</label><input class="inputCadastro" type="text" value="<?php echo (isset($dados)) ? $dados->FONE : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe o telefone" name="txtFone" id="txtFone" size="20"><span class="msg-aviso">*</span></br>
-                        <label>CNPJ:</label><input class="inputCadastro"type="text" value="<?php echo (isset($dados)) ? $dados->CNPJ : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe o CNPJ" name="txtCnpj" id="txtCnpj" size="20"><span class="msg-aviso">*</span></br>
+                        <label>Empresa:</label>
+						<input class="inputCadastro" type="text" value="<?php echo (isset($dados)) ? $dados->RAZAO : '';?>"  onblur="VerificaSize(this.id);" placeholder="Informe a Razão Social" name="txtRazao" id="txtRazao" size="35"><span class="msg-aviso">*</span></br>
+                        <label>Responsável:</label>
+						<input class="inputCadastro"type="text" value="<?php echo (isset($dados)) ? $dados->RESPONSAVEL : '';?>"  onblur="VerificaSize(this.id);" placeholder="Informe o responsável" name="txtResponsavel" id="txtResponsavel" size="35"><span class="msg-aviso">*</span></br>
+                        <label>Email:</label>
+						<input class="inputCadastro"type="email" value="<?php echo (isset($dados)) ? $dados->EMAIL : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe o e-mail" name="txtEmail" id="txtEmail" size="20"><span class="msg-aviso">*</span></br>
+                        <label>Senha:</label>
+						<input class="inputCadastro"type="password" value="<?php echo (isset($dados)) ? base64_decode($dados->SENHA) : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe a senha" name="txtSenha" id="txtSenha" size="20"><span class="msg-aviso">** Mínimo de 6 caracteres</span></br>
+                        <label>Confirma Senha:</label>
+						<input class="inputCadastro"type="password" value="<?php echo (isset($dados)) ? base64_decode($dados->SENHA) : '';?>" onblur="VerificaSize(this.id);" placeholder="Confirme a senha" name="txtConfirmaSenha" id="txtConfirmaSenha" size="20"><span class="msg-aviso">*</span></br>
+                        <label>Fone:</label>
+						<input class="inputCadastro" type="text" value="<?php echo (isset($dados)) ? $dados->FONE : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe o telefone" name="txtFone" id="txtFone" size="20"><span class="msg-aviso">*</span></br>
+                        <label>CNPJ:</label>
+						<input class="inputCadastro"type="text" value="<?php echo (isset($dados)) ? $dados->CNPJ : '';?>" onblur="VerificaSize(this.id);" placeholder="Informe o CNPJ" name="txtCnpj" id="txtCnpj" size="20"><span class="msg-aviso">*</span></br>
                         <label>Status</label>
                         <select name="cmbStatus" id="cmbStatus" class="cmbCadastro" onblur="VerificaSize(this.id);">
                             <option value=""></option>
