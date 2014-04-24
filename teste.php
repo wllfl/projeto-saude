@@ -189,7 +189,7 @@ $faixaDesconhecem = $stm->fetch(PDO::FETCH_OBJ);
 					data: [
 						{
 							name: 'Homens',
-							y: 12.8,
+							y: <?php echo $geralSexo->MASCULINO;?> ,
 							sliced: true,
 							selected: true
 						},

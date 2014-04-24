@@ -427,6 +427,19 @@ hr{
 	font-size: 10px;
 }
 
+.info{
+    margin-left: 25px;
+    text-align: left;
+    background-color: white;
+    border: 1px dotted black;
+    width: 340px;
+    padding: 5px;
+}
+
+.info span{
+    font-weight: bold;
+}
+
 .ms{width: 150px; padding:10px 10px 10px 30px; border:1px solid #999; margin-bottom:10px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; box-shadow:#333 0 0 2px; -webkit-box-shadow:#333 0 0 2px; -moz-box-shadow:#333 0 0 2px; font:bold 12px "Trebuchet MS", Arial, Helvetica, sans-serif; font-variant:small-caps; margin-top:10px;}
 .no{background:#FFCACA url(../images/ico/no.png) 7px no-repeat; border-color:#900; color:#900;}
 .ok{background:#A6FFBC url(../images/ico/ok.png) 7px no-repeat; border-color:#090; color:#090;}

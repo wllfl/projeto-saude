@@ -1,6 +1,14 @@
 <?php
 session_start();
 require_once 'inc/inc_verifica_acesso.php';
+require_once 'autoload.php';
+
+$sql = "SELECT * FROM TAB_IMPORTACAO ORDER BY ID_IMPORTACAO ASC";
+$pdo = Conexao::getInstance();
+$stm = $pdo->prepare($sql);
+$stm->execute();
+$dados = $stm->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,8 +25,15 @@ require_once 'inc/inc_verifica_acesso.php';
         
         <div id="corpo">
             <div id="painelInfo">
-                <h3>Painel de Informações</h3>
-                <p> </p>
+                <h2>Painel de Informações</h2>
+                <?php foreach($dados as $reg):?>
+                <p class='info'>
+                    <span>Id do Processo:</span> <?php echo $reg->ID_OPERACAO ?><br/>
+                    <span>Data/Hora: </span><?php echo $reg->DATA_IMPORTACAO ?><br/>
+                    <span>Quantidade de registro: </span><?php echo $reg->QTDE_REGISTRO ?>
+                </p>
+                <br>
+            <?php endforeach;?>
             </div>
            
             <div id="painelSecundario">
