@@ -1,5 +1,5 @@
 <?php
-require_once 'autoload.php';
+require_once PATH . "/autoload.php";
 
 class Importacao extends Base{
     
@@ -9,7 +9,7 @@ class Importacao extends Base{
     
     public function getAll(){
         try{
-            $sql = "SELECT U.RAZAO, U.USUARIO, I.* FROM TAB_IMPORTACAO INNER JOIN TAB_USUARIO ON I.ID_USUARIO = U.ID_USUARIO";
+            $sql = "SELECT U.RAZAO, U.RESPONSAVEL, I.* FROM TAB_IMPORTACAO I INNER JOIN TAB_USUARIO U ON I.ID_USUARIO = U.ID_USUARIO";
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $dados = $stm->fetchAll(PDO::FETCH_OBJ);
@@ -22,9 +22,11 @@ class Importacao extends Base{
     
     public function getFilterId($id){
         try{
-            $sql = "SELECT U.RAZAO, U.USUARIO, I.* FROM TAB_IMPORTACAO INNER JOIN TAB_USUARIO ON I.ID_USUARIO = U.ID_USUARIO WHERE U.RAZAO LIKE ?";
+            $sql = "SELECT U.RAZAO, U.RESPONSAVEL, I.ID_IMPORTACAO, DATE_FORMAT(I.DATA_IMPORTACAO , '%d/%c/%Y') AS DATA, TIME_FORMAT(I.DATA_IMPORTACAO , '%H:%i:%s') AS HORA, I.ID_OPERACAO, I.QTDE_REGISTRO ";
+            $sql .= "FROM TAB_IMPORTACAO I INNER JOIN TAB_USUARIO U ON I.ID_USUARIO = U.ID_USUARIO ";
+            $sql .= "WHERE I.ID_USUARIO = ? ORDER BY ID_IMPORTACAO DESC";
             $stm = $this->pdo->prepare($sql);
-            $stm->bindValue(1, $filter.'%');
+            $stm->bindValue(1, $id);
             $stm->execute();
             $dados = $stm->fetchAll(PDO::FETCH_OBJ);
             
@@ -34,47 +36,18 @@ class Importacao extends Base{
         }
     }
     
-    public function insert($array){
-        try{
-            $sql = "INSERT INTO TAB_IMPORTACAO(ID_USUARIO, QTDE_REGISTRO)VALUES";
-            $sql .= "(?, ?)";
-            $stm = $this->pdo->prepare($sql);
-            $cont = 1;
-            foreach ($array as $valor):
-                $stm->bindValue($cont, $valor);
-                $cont++;
-            endforeach;
-            $retorno = $stm->execute();
-
-            return $retorno;
-            
-        } catch (PDOException $ex) {
-            echo "Erro ao inserir dados: " . $ex->getMessage();
-        }
-    }
-    
-    public function update($array){
-        try{
-            $sql = "UPDATE TAB_IMPORTACAO SET ID_USUARIO=?, QTDE_REGISTRO=?";
-            $sql .= "WHERE ID_IMPORTACAO = ?";
-            $stm = $this->pdo->prepare($sql);
-            $cont = 1;
-            foreach ($array as $valor):
-                $stm->bindValue($cont, $valor);
-                $cont++;
-            endforeach;
-            $retorno = $stm->execute();
-            
-            return $retorno;
-        } catch (PDOException $ex) {
-            echo "Erro ao editar dados: " . $ex->getMessage();
-        }
-    }
-    
+	public function insert($array){}
+	public function update($array){}
+	
     public function delete($id){
         try{
-            $sql = "DELETE FROM TAB_IMPORTACAO WHERE ID_IMPORTACAO = ?";
-            $stm = $this->pdo->prepare($sql);
+			$sql1 = "DELETE FROM TAB_PLANILHA WHERE ID_OPERACAO = ?";
+            $stm  = $this->pdo->prepare($sql1);
+            $stm->bindValue(1, $id);
+            $retorno = $stm->execute();
+		
+            $sql2 = "DELETE FROM TAB_IMPORTACAO WHERE ID_OPERACAO = ?";
+            $stm  = $this->pdo->prepare($sql2);
             $stm->bindValue(1, $id);
             $retorno = $stm->execute();
             

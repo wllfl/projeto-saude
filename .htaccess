@@ -3,13 +3,16 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^principal/?$ home.php [NC,L]
-    RewriteRule ^gerar-grafico/?$ grafico/colesterol.php [NC,L]
+    RewriteRule ^gerar-grafico/([^/\.]+)/([^/\.]+)/?$ grafico/grafico.php?patologia=$1&operacao=$2 [NC,L]
+	RewriteRule ^gerar-grafico/?$ grafico/grafico.php [NC,L]
+	RewriteRule ^gerenciar-importacao/?$ gerenciar.php [NC,L]
     RewriteRule ^upload-planilha/?$ importacao.php [NC,L]
     RewriteRule ^acesso-negado/?$ liberacao.php [NC,L]
     RewriteRule ^saude-ocupacional/?$ sobre.php [NC,L]
     RewriteRule ^pesquisar-usuario/?$ consulta.php [NC,L]
     RewriteRule ^cadastrar-usuario/?$ cadastro.php [NC,L]
     RewriteRule ^enviar-senha/?$ enviaSenha.php [NC,L]
+	RewriteRule ^excluir/importacao/id/([^/\.]+)/?$ controller/ctImportacao.php?acao=excluir&id=$1 [NC,L]
     RewriteRule ^excluir/usuario/id/([^/\.]+)/?$ controller/ctUsuario.php?acao=excluir&id=$1 [NC,L]
     RewriteRule ^editar/usuario/id/([^/\.]+)/?$ cadastro.php?id=$1 [NC,L]
     RewriteRule ^login/?$ index.php [NC,L]

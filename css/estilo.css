@@ -350,7 +350,7 @@ height: auto;
 
 #boxCadastro label {
     display: inline-block;
-    width: 130px;
+    width: 140px;
     text-align: left;
     line-height: 40px;
 }
@@ -420,7 +420,7 @@ hr{
 }
 
 .box-grafico:hover{
-	box-shadow: 2px 2px 7px black ;
+	box-shadow: 2px 2px 20px black ;
 	cursor: pointer;
 }
 .titulo-grafico{
@@ -429,11 +429,13 @@ hr{
 
 .info{
     margin-left: 25px;
+    margin-top: 5px;
     text-align: left;
     background-color: white;
     border: 1px dotted black;
     width: 340px;
     padding: 5px;
+    font-size: 12px;
 }
 
 .info span{

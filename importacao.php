@@ -13,7 +13,7 @@ require_once 'inc/inc_verifica_acesso.php';
     <body>
         <fieldset id="boxImportacao"> 
             <legend align="center">Importar Planilha</legend>
-            <form name="frmImportacao" id="frmImportacao" method="POST" action="/ProjetoPedro/controller/ctImportacao.php" enctype="multipart/form-data"/>
+            <form name="frmImportacao" id="frmImportacao" method="POST" action="/ProjetoPedro/controller/ctImportacao.php?acao=importar" enctype="multipart/form-data"/>
                 <input type="file" name="file" id="file"></br></br>
             </form>
             <input type="image" name="botaoVoltar" src="/ProjetoPedro/images/btnVoltar.png" class="btnImagem" onclick="window.close();"/>

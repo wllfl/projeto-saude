@@ -3,12 +3,9 @@ session_start();
 require_once 'inc/inc_verifica_acesso.php';
 require_once 'autoload.php';
 
-$sql = "SELECT * FROM TAB_IMPORTACAO ORDER BY ID_IMPORTACAO ASC";
-$pdo = Conexao::getInstance();
-$stm = $pdo->prepare($sql);
-$stm->execute();
-$dados = $stm->fetchAll(PDO::FETCH_OBJ);
-
+$conexao = Conexao::getInstance();
+$imp     = new Importacao($conexao);
+$dados   = $imp->getFilterId($_SESSION['ID']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,20 +24,19 @@ $dados = $stm->fetchAll(PDO::FETCH_OBJ);
             <div id="painelInfo">
                 <h2>Painel de Informações</h2>
                 <?php foreach($dados as $reg):?>
-                <p class='info'>
-                    <span>Id do Processo:</span> <?php echo $reg->ID_OPERACAO ?><br/>
-                    <span>Data/Hora: </span><?php echo $reg->DATA_IMPORTACAO ?><br/>
-                    <span>Quantidade de registro: </span><?php echo $reg->QTDE_REGISTRO ?>
-                </p>
-                <br>
-            <?php endforeach;?>
+					<p class='info'>
+						<span>Id do Processo:</span> <?php echo $reg->ID_OPERACAO ?><br/>
+						<span>Data/Hora: </span><?php echo $reg->DATA . ' - ' . $reg->HORA ?><br/>
+						<span>Quantidade de registro: </span><?php echo $reg->QTDE_REGISTRO ?>
+					</p>
+				<?php endforeach;?>
             </div>
            
             <div id="painelSecundario">
-                <a href="/ProjetoPedro/cadastrar-usuario">
+                <a href="/ProjetoPedro/gerenciar-importacao">
                     <div id="cadastroUsuario" class="botoesPainel divBotoes">
-                            <img class="imagemBotao" src="/ProjetoPedro/images/user.jpg"></br>
-                            <span class="rotuloBotao">Cadastro de Usuário</span>
+                            <img class="imagemBotao" src="/ProjetoPedro/images/gerenciar.jpg"></br>
+                            <span class="rotuloBotao">Gerenciar importações</span>
                     </div>
                 </a>
 
@@ -58,12 +54,12 @@ $dados = $stm->fetchAll(PDO::FETCH_OBJ);
                     </div>
                 </a>
 		
-		<a href="/ProjetoPedro/gerar-grafico" target="_blank">		
-		        <div id="gerarGrafico" class="botoesPainel divBotoes">
-		            <img class="imagemBotao" src="/ProjetoPedro/images/grafico.jpg"></br>
-		            <span class="rotuloBotao">Gerar Gráfico</span>
-		        </div>
-		</a>
+				<a href="/ProjetoPedro/gerar-grafico/" target="_blank">		
+					<div id="gerarGrafico" class="botoesPainel divBotoes">
+						<img class="imagemBotao" src="/ProjetoPedro/images/grafico.jpg"></br>
+						<span class="rotuloBotao">Gerar Gráfico</span>
+					</div>
+				</a>
 				
 				<a href="#" onclick="window.open('upload-planilha', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=250');">
                     <div id="importarPlanilha" class="botoesPainel divBotoes">
