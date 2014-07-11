@@ -1,18 +1,23 @@
 <?php
 session_start();
+//require_once "../classes/Conexao.class.php";
 require_once "../autoload.php";
+require_once "../funcoes.php";
+
 $pdo       = Conexao::getInstance();
 $tabela    = 'TAB_PLANILHA';
 $patologia = (isset($_REQUEST['patologia']))? ucfirst($_REQUEST['patologia']) :'';
 $operacao  = (isset($_REQUEST['operacao']))? $_REQUEST['operacao'] :'';
 
-$sqlOp = "SELECT DATE_FORMAT(DATA_IMPORTACAO , '%d/%c/%Y') AS DATA, TIME_FORMAT(DATA_IMPORTACAO , '%H:%i:%s') AS HORA, ID_OPERACAO ";
-$sqlOp .= "FROM TAB_IMPORTACAO WHERE ID_USUARIO = " . $_SESSION['ID'];
+$where = ($_SESSION['PRIVILEGIO'] == "U") ? "WHERE I.ID_USUARIO =". $_SESSION['ID'] : '';
+
+$sqlOp = "SELECT U.RESPONSAVEL, DATE_FORMAT(DATA_IMPORTACAO , '%d/%c/%Y') AS DATA, TIME_FORMAT(DATA_IMPORTACAO , '%H:%i:%s') AS HORA, ID_OPERACAO ";
+$sqlOp .= "FROM TAB_IMPORTACAO I INNER JOIN TAB_USUARIO U ON I.ID_USUARIO = U.ID_USUARIO " . $where;
 $stm = $pdo->prepare($sqlOp);
 $stm->execute();
 $dados = $stm->fetchAll(PDO::FETCH_OBJ);
 
-if (!empty($patologia)):
+if (!empty($patologia) && !empty($operacao)):
 	$sql1 = "SELECT SUM(QTDE_D) AS DESCONHECEM, SUM(QTDE_N) AS NORMAL, SUM(QTDE_S) AS ELEVADO, (SUM(QTDE_D) + SUM(QTDE_N) + SUM(QTDE_S)) AS TOTAL ";
 	$sql1 .= "FROM $tabela ";
 	$sql1 .= "WHERE ID_OPERACAO = '$operacao' AND PATOLOGIA = '$patologia' ";
@@ -87,12 +92,13 @@ if (!empty($patologia)):
 	$stm->execute();
 	$faixaDesconhecem = $stm->fetch(PDO::FETCH_OBJ);
 endif;
+
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Exemplo de Graficos</title>
+		<title>Graficos</title>
 		<link href="/ProjetoPedro/css/estilo.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="/ProjetoPedro/js/jquery.js"></script>
 		<script src="/ProjetoPedro/js/highcharts.js"></script>
@@ -552,26 +558,25 @@ endif;
 		</script>
 	</head>
 	<body>
+		<h3>Gráficos</h3>
 			<div style="width: 1000px; min-height:900px;margin: 0 auto;">
 			    <br>
 				<form id="frmPatologia" method="GET" action="">
-					<label>Selecione a patologia: </label>
-					<select name="cmbPatologia" id="cmbPatologia" class="cmbCadastro">
-						<option value=""></option>
+					<select name="cmbImportacao" id="cmbImportacao" class="cmbCadastro" onchange="Submeter()">
+						<option value="">Informe a importação</option>
+						<?php foreach($dados as $reg): ?>
+							<option value="<?php echo $reg->ID_OPERACAO; ?>"><?php echo AlteraAcento($reg->RESPONSAVEL); ?> - <?php echo $reg->DATA . ' ' . $reg->HORA; ?></option>
+						<?php endforeach; ?>
+					<select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<select name="cmbPatologia" id="cmbPatologia" class="cmbCadastro" onchange="Submeter()">
+						<option value="">Informe a patologia</option>
 						<option value="colesterol" >Colesterol</option>
 						<option value="glicemia" >Glicemia</option>
 						<option value="triglicerideos" >Triglicerídeos</option>
 						<option value="hipotiroidismo" >Hipotiroidismo</option>
 						<option value="hipertiroidismo" >Hipertiroidismo</option>
-					<select> - 
-					<label>Selecione a importação: </label>
-					<select name="cmbImportacao" id="cmbImportacao" class="cmbCadastro" onchange="Submeter()">
-						<option value=""></option>
-						<?php foreach($dados as $reg): ?>
-							<option value="<?php echo $reg->ID_OPERACAO; ?>">Data: <?php echo $reg->DATA; ?> - Hora: <?php echo $reg->HORA; ?></option>
-						<?php endforeach; ?>
-					<select>
-					<input type="button" value="Voltar" onclick="window.close();">
+					<select>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input class="botaoGrafico" type="button" value="Fechar" onclick="window.close();">
 					</br>
 				</form>
 				
@@ -601,8 +606,14 @@ endif;
 			function Submeter(){
 			    var patologia = document.getElementById('cmbPatologia').value;
 			    var operacao  = document.getElementById('cmbImportacao').value;
-
-				window.location = '/ProjetoPedro/gerar-grafico/' + patologia+'/'+operacao;
+				
+				if(operacao != "" && patologia != ""){
+					window.location = '/ProjetoPedro/gerar-grafico/' + patologia+'/'+operacao;
+				}else{
+					if(operacao == "" && patologia == ""){
+						alert("Por favor preencher patologia e importação!");
+					}
+				}
 			}
 		</script>
 	</body>

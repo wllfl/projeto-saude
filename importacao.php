@@ -2,6 +2,15 @@
 header('Content-type: text/html; charset=utf-8');
 session_start();
 require_once 'inc/inc_verifica_acesso.php';
+require_once 'autoload.php';
+
+$pdo = Conexao::getInstance();
+$importacao = new Importacao($pdo);
+
+if ($importacao->getContadorImportacao($_SESSION['ID']) >= 12):
+    echo "<script>alert('Seu limite de 12 importações foi atingido! O sistema irá excluir a importação mais antiga.')</script>";
+endif;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,10 +23,10 @@ require_once 'inc/inc_verifica_acesso.php';
         <fieldset id="boxImportacao"> 
             <legend align="center">Importar Planilha</legend>
             <form name="frmImportacao" id="frmImportacao" method="POST" action="/ProjetoPedro/controller/ctImportacao.php?acao=importar" enctype="multipart/form-data"/>
-                <input type="file" name="file" id="file"></br></br>
+                <input type="file" name="file" id="file" title="Importar arquivo"></br></br>
             </form>
-            <input type="image" name="botaoVoltar" src="/ProjetoPedro/images/btnVoltar.png" class="btnImagem" onclick="window.close();"/>
-            <input type="image" name="botaoImportar" src="/ProjetoPedro/images/btnImportar.png" class="btnImagem" onclick="Submit()"> 
+            <input type="image" name="botaoVoltar" src="/ProjetoPedro/images/fechar.png" class="btnImagem" onclick="window.close();" title="Página principal"/>
+            <input type="image" name="botaoImportar" src="/ProjetoPedro/images/btnImportar.png" class="btnImagem" onclick="Submit();" title="Importar" /> 
         </fieldset>
         <script type="text/javascript">
             function Submit(){

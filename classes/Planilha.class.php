@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset=utf-8');
 
  /***************************************************************************************************
  * @author william																					*
@@ -23,10 +24,11 @@ class Planilha extends InsertPlanilha{
 	/*
   	* Método construtor executando construtor da classe pai
   	*/
-  	public function __construct($conexao, $file, $tabela){
-  		parent::__construct($conexao, $file, $tabela);
+  	public function __construct($conexao, $file, $tabela, $nameFile){
+  		parent::__construct($conexao, $file, $tabela, $nameFile);
         if ($this->getColunas() != self::qtde_colunas):
-            echo 'Quantidades de colunas da planilha está incorreta! aceito ' . self::qtde_colunas . ' existente ' . $this->getColunas();
+            echo utf8_encode("<br/><br/><span class='ms no'>Quantidades de colunas da planilha está incorreta, aceito " . self::qtde_colunas . ' colunas existente ' . $this->getColunas() . " colunas! </span>");
+			echo "<br/><br/><input type='image' name='botaoVoltar' src='/ProjetoPedro/images/btnVoltar.png' class='btnImagem' onclick='window.location=\"/ProjetoPedro/upload-planilha\"' title='Página principal'/>";
             exit();
         endif;
   	}
@@ -73,6 +75,22 @@ class Planilha extends InsertPlanilha{
   	public function insertDados(){
 			$this->id = $_SESSION['ID'].date('ymdHis');
 			
+			if($this->getContadorImportacao($_SESSION['ID']) >= 12):
+				$sqlDel = "DELETE FROM TAB_PLANILHA ";
+				$sqlDel .= "WHERE ID_USUARIO = ? AND (CAST(DATA AS DATE)) = ";
+				$sqlDel .= "(SELECT MIN(CAST(DATA_IMPORTACAO AS DATE)) FROM TAB_IMPORTACAO WHERE ID_USUARIO = ?)";
+				$stm = $this->pdo->prepare($sqlDel);
+				$stm->bindValue(1, $_SESSION['ID']);
+				$stm->bindValue(2, $_SESSION['ID']);
+				$stm->execute();
+
+				$sqlDel = "DELETE FROM TAB_IMPORTACAO ";
+				$sqlDel .= "WHERE ID_USUARIO = ? ORDER BY DATA_IMPORTACAO LIMIT 1 ";
+				$stm = $this->pdo->prepare($sqlDel);
+				$stm->bindValue(1, $_SESSION['ID']);
+				$stm->execute();
+			endif;
+
 			try{
 				$sql = "INSERT INTO TAB_PLANILHA (ID_OPERACAO, ID_USUARIO, PATOLOGIA, FAIXA_ETARIA, SEXO, QTDE_D, QTDE_S, QTDE_N, QTDE_T, QTDE_H) ";
 				$sql .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -132,6 +150,26 @@ class Planilha extends InsertPlanilha{
             $this->insertLog($this->id, $_SESSION['ID'], 'ERRO');
             return FALSE;
         endif;
+    }
+
+     /*
+     * Método para contar a quantidade de importações feitar por um usuário
+     * @param $idUsuario - Id do usuário 
+     * @return - Valor inteiro com  quantidade de importações 
+     */
+    public function getContadorImportacao($idUsuario){
+        try{
+            $sql = "SELECT COUNT(*) AS CONTADOR FROM TAB_IMPORTACAO ";
+            $sql .= "WHERE ID_USUARIO = ?";
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindValue(1, $idUsuario);
+            $stm->execute();
+            $valor = $stm->fetch(PDO::FETCH_OBJ);
+            
+            return $valor->CONTADOR;
+        } catch (Exception $ex) {
+            echo "Erro ao consultar dados: " . $ex->getMessage();
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset=utf-8');
 require_once "SimpleXLSX.class.php";
 //error_reporting(E_ALL ^ E_NOTICE);
 
@@ -20,19 +21,26 @@ abstract class InsertPlanilha{
 	* @param $file    = Endereço e nome da planilha
 	* @param $tabela  = Tabela para inserir os dados
 	*/
-	public function __construct($conexao, $file, $tabela){
+	public function __construct($conexao, $file, $tabela, $nameFile){
 		if ($conexao != null) $this->pdo = $conexao;
                 if ($tabela  != null) $this->tabela = $tabela;
 
-		if ($file != null && $this->existsExtensao($file)){
-			$this->name_file = $file;
-			//$this->dataSheet = new Spreadsheet_Excel_Reader($file);
-			$this->dataSheet = new SimpleXLSX($file);
-			list($this->colunas, $this->linhas) = $this->dataSheet->dimension();
-		}else{
-			echo "Arquivo não encontrado ou extensão inválida!";
+        if($file == null ):
+        	echo "<br/><br/><span class='ms no'>Nenhum arquivo foi informado!</span>";
+			echo "<br/><br/><input type='image' name='botaoVoltar' src='/ProjetoPedro/images/btnVoltar.png' class='btnImagem' onclick='window.location=\"/ProjetoPedro/upload-planilha\"' title='Página principal'/>";
             exit();
-		}
+        else:
+        	if(!$this->existsExtensao($nameFile)):
+        		$str = explode('.', $nameFile);
+        		echo "<br/><br/><span class='ms no'>Extensão do arquivo (." . $str[1] . ") inválida!</span>";
+				echo "<br/><br/><input type='image' name='botaoVoltar' src='/ProjetoPedro/images/btnVoltar.png' class='btnImagem' onclick='window.location=\"/ProjetoPedro/upload-planilha\"' title='Página principal'/>";
+	            exit();
+        	else:
+        		$this->name_file = $nameFile;
+				$this->dataSheet = new SimpleXLSX($file);
+				list($this->colunas, $this->linhas) = $this->dataSheet->dimension();
+        	endif;
+        endif;
 	}
 
 	abstract public function getDados();
@@ -59,10 +67,10 @@ abstract class InsertPlanilha{
     * @param $file - String contendo o endereço da planilha
 	* @return = TRUE 
 	*/
-	public function existsExtensao($file){
-		$retorno = true;
-		$str = substr($file, -4);
-		if ($str == $this->extensao) $retorno = true;
+public function existsExtensao($file){
+		$retorno = false;
+		$str = explode('.', $file);
+		if ($str[1] == $this->extensao) $retorno = true;
 
 		return $retorno;
 	}
@@ -118,7 +126,7 @@ abstract class InsertPlanilha{
 
 	/*
 	* Método para alterar acentução
-        * @param $valor - String a ser alterada
+    * @param $valor - String a ser alterada
 	* @return = String modificada
 	*/
 	private function AlteraAcento($valor) {

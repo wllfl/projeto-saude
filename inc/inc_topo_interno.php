@@ -1,9 +1,28 @@
+<?php
+    require_once 'funcoes.php';
+?>
 <div id="titulo">
     <br>
     <div id="usuario">
-        <img src="/ProjetoPedro/images/user.jpg"> <label class="labelUsuario"><?php echo (isset($_SESSION['RESPONSAVEL'])) ? substr($_SESSION['RESPONSAVEL'], 0, strpos($_SESSION['RESPONSAVEL'], " ")) : 'Usuario'; ?></label>  
-        <img src="/ProjetoPedro/images/calendario.jpg"> <label class="labelUsuario"><?php echo date('d/m/Y'); ?></label> 
-        <a href="/ProjetoPedro/login"><img src="/ProjetoPedro/images/sair.jpg"> <label class="lastLabel">Sair</label></a>                                
+        <a title="Usuário logado" href="/ProjetoPedro/consultar/usuario/id/<?php echo $_SESSION['ID']; ?>"><img src="/ProjetoPedro/images/usuario.png">
+        <label class="labelUsuario">
+        	<?php
+        	    $usuario = ""; 
+        		if (isset($_SESSION['RESPONSAVEL'])) :
+        		    $usuario = substr($_SESSION['RESPONSAVEL'], 0, strpos($_SESSION['RESPONSAVEL'], " "));
+        			if(empty($usuario)):
+        				$usuario = $_SESSION['RESPONSAVEL'];
+        			endif;
+        		else: 
+        		    $usuario = 'Usuário'; 
+        		endif;
+        		echo AlteraAcento($usuario);
+        	?>
+        </label></a>
+        <img src="/ProjetoPedro/images/calendario.png" onclick="AtivaCalendario()" title="<?php echo getDataExtenso(); ?>"> <label class="labelUsuario" title="<?php echo getDataExtenso(); ?>"><?php echo date('d/m/Y'); ?>
+        </label>
+        <a href="/ProjetoPedro/login" title="Sair do sistema"><img src="/ProjetoPedro/images/exit.png"> <label class="lastLabel">Sair</label></a>                                
     </div>
-    <span class="TituloTopo">Ferramenta para Avaliação de Saúde Ocupacional</span>
+    <a href="/ProjetoPedro/principal"><span class="TituloTopo">Ferramenta para Avaliação de Saúde Ocupacional</span></a>
 </div>
+

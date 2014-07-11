@@ -54,27 +54,32 @@ endif;
         <link href="/ProjetoPedro/css/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-       <div id="topo">
-            <?php include "inc/inc_topo_externo.php"; ?>
-        </div>
-        
-        <div id="corpo">
-            <fieldset id="boxLogin">
-                 <h1>Login</h1>
-                 <div id="msgLogin">
-                    <?php echo $msg = (isset($_SESSION['MSG_LOGIN'])) ? $_SESSION['MSG_LOGIN'] : '' ; ?>
-                 </div>
-                 <form id="frmLogin" action="/ProjetoPedro/index.php" method="POST" onsubmit="return Validar();">
-                     <label>E-mail:</label>
-                     <input type="text" name="txtEmail" id="txtEmail" class="inputlogin" placeholder="Informe o E-mail" value="<?php echo (isset($email)) ? $email : ''; ?>"></br></br>        
-                     <label>Senha:</label>
-                     <input type="password" name="txtSenha" id="txtSenha" class="inputlogin" placeholder="Informe a Senha" value="<?php echo (isset($senha)) ? $senha : ''; ?>"></br></br>
-                     <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" <?php echo (!empty($checked)) ? $checked : ''; ?>>
-                     Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>  
-					 <input type="hidden" name="acao" value="validar"/>					 
-                     <input type="submit" name="btnlogin" class="botao" id="btnlogin" value="Entrar"/>
-                </form>
-            </fieldset>
+        <div class="geral">
+            <div id="topo">
+                <?php include "inc/inc_topo_externo.php"; ?>
+            </div>
+            
+            <div id="corpo">
+                <fieldset id="boxLogin">
+                     <h1>Login</h1>
+                     <div id="msgLogin">
+                        <?php echo $msg = (isset($_SESSION['MSG_LOGIN'])) ? $_SESSION['MSG_LOGIN'] : '' ; ?>
+                     </div>
+                     <form id="frmLogin" action="/ProjetoPedro/index.php" method="POST" onsubmit="return Validar();">
+                         <label>E-mail:</label>
+                         <input type="text" name="txtEmail" id="txtEmail" class="inputlogin" placeholder="Informe o E-mail" value="<?php echo (isset($email)) ? $email : ''; ?>"></br></br>        
+                         <label>Senha:</label>
+                         <input type="password" name="txtSenha" id="txtSenha" class="inputlogin" placeholder="Informe a Senha" value="<?php echo (isset($senha)) ? $senha : ''; ?>"></br></br>
+                         <input type="checkbox" id="ckremenber" name="ckremenber" class="ckremenber" value="s" <?php echo (!empty($checked)) ? $checked : ''; ?>>
+                         Lembrar senha<a class="esquecisenha" href="enviar-senha">Esqueci minha senha</a></br></br><br/>  
+    					 <input type="hidden" name="acao" value="validar"/>					 
+                         <input type="submit" name="btnlogin" class="botao" id="btnlogin" value="Entrar"/>
+                    </form>
+                </fieldset>
+            </div>
+            <div class="rodape">
+                <?php include "inc/inc_rodape.php"; ?>
+            </div>
         </div>
         <script type="text/javascript">
             function Validar(){

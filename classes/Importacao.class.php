@@ -19,12 +19,32 @@ class Importacao extends Base{
             echo "Erro ao consultar dados: " . $ex->getMessage();
         }
     }
+
+    public function getContadorImportacao($idUsuario){
+        try{
+            $sql = "SELECT COUNT(*) AS CONTADOR FROM TAB_IMPORTACAO ";
+            $sql .= "WHERE ID_USUARIO = ?";
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindValue(1, $idUsuario);
+            $stm->execute();
+            $valor = $stm->fetch(PDO::FETCH_OBJ);
+            
+            return $valor->CONTADOR;
+        } catch (Exception $ex) {
+            echo "Erro ao consultar dados: " . $ex->getMessage();
+        }
+    }
     
     public function getFilterId($id){
         try{
+            $where = "";
+            if (!empty($id)){
+                $where = "WHERE I.ID_USUARIO = ? ";
+            }
+
             $sql = "SELECT U.RAZAO, U.RESPONSAVEL, I.ID_IMPORTACAO, DATE_FORMAT(I.DATA_IMPORTACAO , '%d/%c/%Y') AS DATA, TIME_FORMAT(I.DATA_IMPORTACAO , '%H:%i:%s') AS HORA, I.ID_OPERACAO, I.QTDE_REGISTRO ";
             $sql .= "FROM TAB_IMPORTACAO I INNER JOIN TAB_USUARIO U ON I.ID_USUARIO = U.ID_USUARIO ";
-            $sql .= "WHERE I.ID_USUARIO = ? ORDER BY ID_IMPORTACAO DESC";
+            $sql .= $where."ORDER BY ID_IMPORTACAO DESC";
             $stm = $this->pdo->prepare($sql);
             $stm->bindValue(1, $id);
             $stm->execute();

@@ -8,17 +8,40 @@ body, p, h3{
 	padding: 0;
 }
 
+body,html { 
+    height: 100%;
+}
+
 body {
     background-color: #e4e4e4;
     text-align: center;
 	font-family: Century Gothic;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+html>body #painelInfo {
+    height: auto;
+}
+
+hr{
+    border: 1px dotted #000;
+}
+
+
 #topo{
 	width: 100%;
     height: 100px;
 	background: url('../images/topo.png') repeat-x;
-	box-shadow: 2px 2px 5px black ;
+	box-shadow: 2px  2px 5px black;
 }
 
 #titulo{
@@ -26,27 +49,125 @@ body {
 	width: 1000px;
 	margin: 0px auto;
 }
-
-.TituloTopo{
-	color: white;
-	line-height: 75px;
-	text-shadow: 1px 1px 2px black;
-	font-weight: bold;
-	font-size: 20px;
+#corpo{
+    text-align: center;
+    width: 1000px;
+    min-height: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
-#corpo{
+#corpoLogin {
 	text-align: center;
 	width: 1000px;
-	height: 550px;
-	margin: 120px auto;
+	min-height: 320px;
+	margin: 0px auto;
+}
+    
+#corpoGerenciaImp{
+	text-align: center;
+	width: 1000px;
+	min-height: 400px;
+	margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
 }
 
+#corpoConsulta{
+    text-align: center;
+    width: 1000px;
+    min-height: 530px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+#corpoCadastroUsuario{
+    text-align: center;
+    width: 1000px;
+    min-height: 850px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+#corpoPrincipal{
+    text-align: center;
+    width: 1000px;
+    min-height: 700px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+#corpoSobre{
+    text-align: center;
+    width: 1000px;
+    min-height: 850px;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
+}
+
+#usuario {
+    float: right;
+    width: 430px;
+    height: 45px;
+    margin-top: 20px;
+    text-align: right;
+    display: inline-block;
+
+}
+
+#usuario img {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#usuario .labelUsuario {
+    width: 90px;
+    height: 20px;
+    text-align: left;
+    margin-right: 25px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#usuario .lastLabel {
+    width: 30px;
+    height: 20px;
+    text-align: left;
+    margin-right: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#painelInfo {
+    float: left;
+    border: 1px solid #333333;
+    width: 400px;
+    min-height: 500px;
+    height: 500px;
+    margin-right: 18px;
+    box-shadow: 2px 2px 5px black;
+    background-color: #ccc;
+}
+
+#box-importacao{
+    height: 410px;
+    overflow: auto;
+}
 #boxLogin {
     width: 450px;
-    height: 330px;
+    height: 100%;
     color: black;
-    margin: 120px auto;
+    margin:50px auto;
     box-shadow: 3px 3px 5px black ;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -58,12 +179,118 @@ body {
 
 
 #boxLogin label{
-	display: inline-block;
-	width: 80px;
-	height: 20px;
-	text-align: right;
-	font-size: 18px;
+    display: inline-block;
+    width: 80px;
+    height: 20px;
+    text-align: right;
+    font-size: 18px;
 }
+
+#painelSecundario {
+    width: 550px;
+    min-height: 500px;
+    float: right;
+}
+
+#painelSecundario p{
+    text-indent: 60px;
+    text-align: justify;
+}
+
+#informacao{
+    background-color: white;
+    padding: 20px;
+    border: 2px dotted #333333;
+    box-shadow: 2px 2px 5px black;
+}
+
+#boxImportacao{
+    width: 450px;
+    height: 200px;
+    margin: 7px auto;
+    padding: 10px;
+    background: url('../images/fundoLogin.png') repeat-x;
+    border-radius: 10px;
+}
+
+#boxImportacao legend{
+    font-size: 20px;
+    padding: 10px;
+    background-color: #ccc;
+    border: 1px dotted #333333;
+    border-radius: 10px;
+}
+
+#consultaUsuario {
+    background-color: white;
+    border-radius: 10px;
+    min-height: 100px;
+}
+
+#consultaUsuario legend {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #ccc;
+    border: 1px dotted #333333;
+    border-radius: 10px;
+}
+
+#boxCadastro {
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: left;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 3px 3px 5px black ;
+}
+
+#boxCadastro fieldset {
+    min-height: 500px;
+    margin: 0 auto;
+    text-align: left;
+    width: 630px;
+    box-shadow: 3px 3px 5px black ;
+    border-radius: 10px;
+    
+}
+
+#boxCadastro fieldset legend{
+    font-size: 20px;
+    padding: 10px;
+    border: 1px dotted #333333;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #e4e4e4;
+}
+
+#boxCadastro label {
+    display: inline-block;
+    width: 140px;
+    text-align: left;
+    line-height: 40px;
+}
+
+#boxCadastro input {
+    display: inline-block;
+    margin-left: 10px;
+    color: #333333;
+}
+
+#controlaBotao {
+    float: right;
+}
+
+#msgLogin{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+
+.geral {
+    min-height: 100%;
+    position: relative;
+}
+
 
 .inputlogin {
     border: 1px solid #333333;
@@ -97,6 +324,24 @@ body {
 	color: black;
 }
 
+.botaoGrafico {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #999999;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 2px 2px 5px black ;
+    width: 70px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.botaoGrafico:hover{
+    background-color: #92C146;
+    color: black;
+}
+
 .btnImagem{
     margin: 10px; 
 }
@@ -105,7 +350,7 @@ body {
     box-shadow: 2px 2px 5px black ;
 }
 
-.ckremenber {
+.ckremenber {   
     margin-left: 90px;
 	cursor: pointer;
 }
@@ -114,18 +359,6 @@ body {
     font-size: 13px;
     margin-left: 60px;
 }
-
-a{
-  text-decoration: none;
-  color: black;
-}
-
-a:hover{
-  text-decoration: underline;
-  color: black;
-}
-
-/**************************************** Alison *******************************************/
 
 .box-mensagem {
     width: 440px;
@@ -138,73 +371,13 @@ a:hover{
     text-align: center
 }
 
-#usuario {
-    float: right;
-    width: 430px;
-    height: 45px;
-    margin-top: 20px;
-	text-align: right;
-	display: inline-block;
-}
 
-#usuario img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #333333;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-#usuario .labelUsuario {
-    width: 90px;
-	height: 20px;
-	text-align: left;
-	margin-right: 25px;
-	margin-bottom: 20px;
-	font-size: 14px;
-	font-weight: bold;
-}
-
-#usuario .lastLabel {
-    width: 30px;
-	height: 20px;
-	text-align: left;
-    margin-right: 0px;
-	font-size: 14px;
-	font-weight: bold;
-}
-
-#painelInfo {
-    float: left;
-    border: 1px solid #333333;
-    width: 400px;
-    min-height: 500px;
-	height: 500px;
-    margin-right: 18px;
-    box-shadow: 2px 2px 5px black;
-    background-color: #ccc;
-}
-
-html>body #painelInfo {
-height: auto;
-}
-
-#painelSecundario {
-    width: 550px;
-    min-height: 500px;
-    float: right;
-}
-
-#painelSecundario p{
-    text-indent: 60px;
-    text-align: justify;
-}
-
-#informacao{
-    background-color: white;
-    padding: 20px;
-    border: 2px dotted #333333;
-    box-shadow: 2px 2px 5px black;
+.TituloTopo{
+    color: white;
+    line-height: 75px;
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .divBotoes {
@@ -213,7 +386,6 @@ height: auto;
     border: 1px solid #333333;
     float: left;
     cursor: pointer;
-    box-shadow: 2px 2px 5px black;
     text-align: center;
     background-color: #ccc;
 }
@@ -221,6 +393,14 @@ height: auto;
 .divBotoes:hover {
     background-color: #92C146;
     font-weight: bold;
+    box-shadow: 2px 2px 5px black;
+}
+
+.titulorodape{
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+	font-size: 15px;
 }
 
 .botoesPainel {    
@@ -258,25 +438,18 @@ height: auto;
     font-size: 13px;
 }
 
+
+.rodape{
+        width: 100%;
+        background: url('../images/rodape.png') repeat-x;
+        box-shadow: -2px -2px 5px black;
+        position: absolute;
+        bottom: 0;
+        min-height:100px;
+}
+
 .espacoBotao {
     margin: 10px;
-}
-
-#boxImportacao{
-    width: 450px;
-    height: 200px;
-    margin: 7px auto;
-    padding: 10px;
-    background: url('../images/fundoLogin.png') repeat-x;
-    border-radius: 10px;
-}
-
-#boxImportacao legend{
-    font-size: 20px;
-    padding: 10px;
-    background-color: #92C146;
-    border: 1px dotted #333333;
-    border-radius: 10px;
 }
 
 .input{
@@ -287,12 +460,6 @@ height: auto;
     width: 300px;
     padding-left: 10px;
     box-shadow: -2px 2px 2px rgba(0,0,0,0.5)inset;
-}
-
-#consultaUsuario {
-    background-color: white;
-    border-radius: 10px;
-    min-height: 100px;
 }
 
 .tabela {
@@ -318,48 +485,6 @@ height: auto;
 .btnTabelaEI {
     margin: 7px;
     cursor: pointer;
-}
-
-#boxCadastro {
-    background-color: #fff;
-    border-radius: 10px;
-    text-align: left;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 3px 3px 5px black ;
-}
-
-#boxCadastro fieldset {
-    min-height: 500px;
-    margin: 0 auto;
-    text-align: left;
-    width: 620px;
-    box-shadow: 3px 3px 5px black ;
-    border-radius: 10px;
-    
-}
-
-#boxCadastro fieldset legend{
-    font-size: 20px;
-    padding: 10px;
-    border: 1px dotted #333333;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #e4e4e4;
-}
-
-#boxCadastro label {
-    display: inline-block;
-    width: 140px;
-    text-align: left;
-    line-height: 40px;
-}
-
-#boxCadastro input {
-    display: inline-block;
-    margin-left: 10px;
-    color: #333333;
-  
 }
 
 .inputCadastro {
@@ -394,20 +519,6 @@ height: auto;
     font-size: 11px;
     font-weight: bold;
     margin-left: 5px;
-}
-
-#controlaBotao {
-    float: right;
-}
-
-#msgLogin{
-    width: 100%;
-    height: 40px;
-    text-align: center;
-}
-
-hr{
-    border: 1px dotted #000;
 }
 
 .box-grafico{

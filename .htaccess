@@ -8,6 +8,8 @@
 	RewriteRule ^gerenciar-importacao/?$ gerenciar.php [NC,L]
     RewriteRule ^upload-planilha/?$ importacao.php [NC,L]
     RewriteRule ^acesso-negado/?$ liberacao.php [NC,L]
+    RewriteRule ^erro-banco/?$ erro.php [NC,L]
+    RewriteRule ^manual-usuario/?$ manual.php [NC,L]
     RewriteRule ^saude-ocupacional/?$ sobre.php [NC,L]
     RewriteRule ^pesquisar-usuario/?$ consulta.php [NC,L]
     RewriteRule ^cadastrar-usuario/?$ cadastro.php [NC,L]
@@ -15,6 +17,7 @@
 	RewriteRule ^excluir/importacao/id/([^/\.]+)/?$ controller/ctImportacao.php?acao=excluir&id=$1 [NC,L]
     RewriteRule ^excluir/usuario/id/([^/\.]+)/?$ controller/ctUsuario.php?acao=excluir&id=$1 [NC,L]
     RewriteRule ^editar/usuario/id/([^/\.]+)/?$ cadastro.php?id=$1 [NC,L]
+    RewriteRule ^consultar/usuario/id/([^/\.]+)/?$ cadastro.php?id=$1&acao=consulta [NC,L]
     RewriteRule ^login/?$ index.php [NC,L]
     RewriteRule ^palestra/dia/([^/\.]+)/?$ palestra/index.php?dia=$1 [NC,L]
 </IfModule>

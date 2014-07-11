@@ -1,0 +1,160 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Century Gothic;
+	background-color: #e4e4e4;
+}
+
+p{
+	text-align: justify;	
+}
+
+hr {
+	color: #92C146;
+	box-shadow: 2px 2px 5px black;
+	border: 2px solid #92c146;
+}
+
+a {
+	text-decoration: none;
+	font-family: Century Gothic;
+  	src: url('Century_Gothic.ttf');
+  	color: black;
+}
+
+@font-face {
+  	font-family: Century Gothic;
+  	src: url('Century_Gothic.ttf');
+
+}
+
+#topo{
+	width: 100%;
+    height: 100px;
+	background: url('../images/topo.png') repeat-x;
+	box-shadow: 2px 2px 5px black ;
+}
+
+#container {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#titulo{
+	text-align: left;
+	width: 1000px;
+	margin: 0px auto;
+}
+
+#menu {
+	width: 250px;
+	height: 259px;
+	margin: 0 auto;
+}
+
+
+#menu ul {
+    position: relative;
+    padding: 0px 0px 0px 0px;          
+    margin: 0px 0px 0px 0px; 
+}
+
+#menu ul li {
+ 	background-color: #92C146;
+	width: 250px;
+	position: relative;
+	text-align: center;
+	list-style: none;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	padding: 0px 0px 4px;
+	cursor: pointer;
+	border-bottom: 1px solid #000;
+	border-radius: 10px;
+	box-shadow: -3px -3px 5px black; 
+	line-height: 30px;
+
+}
+
+#menu ul li:hover {
+	background-color: #ccc;
+	font-weight: bold;
+}
+
+#usuario {
+    float: right;
+    width: 430px;
+    height: 45px;
+    margin-top: 20px;
+	text-align: right;
+	display: inline-block;
+}
+
+#usuario img {
+    width: 40px;
+    height: 40px;;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#usuario .labelUsuario {
+    width: 90px;
+	height: 20px;
+	text-align: left;
+	margin-right: 25px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#usuario .lastLabel {
+    width: 30px;
+	height: 20px;
+	text-align: left;
+    margin-right: 0px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.TituloTopo{
+	color: white;
+	line-height: 75px;
+	text-shadow: 1px 1px 2px black;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.titulo {
+	text-align: center;
+}
+
+.btnFechar{
+    margin: 10px;
+    margin-left: 1050px;
+    position: fixed; 
+}
+
+.btnFechar:hover{
+    box-shadow: 2px 2px 5px black ;
+}
+
+.btnTopo {
+	margin-left: 1050px;
+	position: fixed;
+	margin-top: -120px;
+}
+
+.btnTopo:hover {
+	box-shadow: 2px 2px 5px black ;
+}
+
+
+
+.imagem {
+	display: block;
+	margin: 0px auto;
+}
+

@@ -11,7 +11,7 @@ class Usuario extends Base{
     
     public static function validaUsuario($email, $senha, $pdo){
         try{
-            $sql = "SELECT * FROM TAB_USUARIO WHERE EMAIL = ? AND SENHA = ?";
+            $sql = "SELECT * FROM TAB_USUARIO WHERE EMAIL = ? AND SENHA = ? AND REGISTRO = 'A'";
             $stm = $pdo->prepare($sql);
             $stm->bindValue(1, $email);
             $stm->bindValue(2, base64_encode($senha));
@@ -25,14 +25,16 @@ class Usuario extends Base{
                 $_SESSION['RESPONSAVEL'] = $dados->RESPONSAVEL;
                 $_SESSION['EMAIL']       = $dados->EMAIL;
                 $_SESSION['CNPJ']        = $dados->CNPJ;
+                $_SESSION['PRIVILEGIO']  = $dados->PRIVILEGIO;
+                $_SESSION['LIBERADO']    = TRUE;
+
 				if($dados->STATUS == 'A'):
 					$_SESSION['ATIVO'] = TRUE;
 				else:
 					$_SESSION['ATIVO'] = FALSE;
 				endif;				
-                $_SESSION['LIBERADO']    = TRUE;
             else:
-                $_SESSION['LIBERADO']    = FALSE;
+                $_SESSION['LIBERADO'] = FALSE;
             endif;
 
         } catch (PDOException $ex) {
@@ -43,7 +45,7 @@ class Usuario extends Base{
 
     public function getAll(){
         try{
-            $sql = "SELECT * FROM TAB_USUARIO";
+            $sql = "SELECT * FROM TAB_USUARIO WHERE REGISTRO = 'A'";
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $dados = $stm->fetchAll(PDO::FETCH_OBJ);
@@ -56,7 +58,7 @@ class Usuario extends Base{
     
     public function getFilterId($id){
         try{
-            $sql = "SELECT * FROM TAB_USUARIO WHERE ID_USUARIO = ?";
+            $sql = "SELECT * FROM TAB_USUARIO WHERE ID_USUARIO = ? AND REGISTRO = 'A'";
             $stm = $this->pdo->prepare($sql);
             $stm->bindValue(1, $id);
             $stm->execute();
@@ -72,11 +74,11 @@ class Usuario extends Base{
         try{
             $tabela = "TAB_USUARIO";
             $coluna = "RAZAO";
-            $campo = array("RAZAO", "EMAIL");
+            $campo = array("RAZAO"=>$array[0], "EMAIL"=>$array[4], "REGISTRO"=>$array[8]);
             
             if (VerificaDuplicidade($tabela, $coluna, $campo) <= 0):
-                $sql = "INSERT INTO TAB_USUARIO(RAZAO, CNPJ, FONE, RESPONSAVEL, EMAIL, SENHA, STATUS)VALUES";
-                $sql .= "(?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO TAB_USUARIO(RAZAO, CNPJ, FONE, RESPONSAVEL, EMAIL, SENHA, STATUS, PRIVILEGIO, REGISTRO)VALUES";
+                $sql .= "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stm = $this->pdo->prepare($sql);
                 $cont = 1;
                 foreach ($array as $valor):
@@ -97,7 +99,7 @@ class Usuario extends Base{
     
     public function update($array){
         try{
-            $sql = "UPDATE TAB_USUARIO SET RAZAO=?, CNPJ=?, FONE=?, RESPONSAVEL=?, EMAIL=?, SENHA=?, STATUS=? ";
+            $sql = "UPDATE TAB_USUARIO SET RAZAO=?, CNPJ=?, FONE=?, RESPONSAVEL=?, EMAIL=?, SENHA=?, STATUS=?, PRIVILEGIO=?, REGISTRO=? ";
             $sql .= "WHERE ID_USUARIO = ?";
             $stm = $this->pdo->prepare($sql);
             $cont = 1;
@@ -115,7 +117,7 @@ class Usuario extends Base{
     
     public function delete($id){
         try{
-            $sql = "DELETE FROM TAB_USUARIO WHERE ID_USUARIO = ?";
+            $sql = "UPDATE TAB_USUARIO SET REGISTRO = 'I' WHERE ID_USUARIO = ?";
             $stm = $this->pdo->prepare($sql);
             $stm->bindValue(1, $id);
             $retorno = $stm->execute();

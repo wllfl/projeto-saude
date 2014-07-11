@@ -4,7 +4,7 @@
  * Constantes de parâmetros para configuração da conexão
  */
 define('HOST', 'localhost');
-define('DBNAME', 'DB_SAUDE');
+define('DBNAME', 'DB_PROJETO');
 define('CHARSET', 'utf8');
 define('USER', 'root');
 define('PASSWORD', '011224');
@@ -41,4 +41,11 @@ class Conexao {
         return self::$pdo;
     }
 }
+
+$pdo = Conexao::getInstance();
+
+if (!$pdo):
+    echo "<script>window.location='erro-banco'</script>";
+    exit();
+endif;
 
